@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Office OCR Address Scanner</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="post-office-header">
+            <div class="header-logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="4" fill="#004B87"/>
+                    <path d="M10 15h20v2H10zM10 20h20v2H10zM10 25h15v2H10z" fill="white"/>
+                </svg>
+                <h1>India Post OCR Scanner</h1>
+            </div>
+            <p class="subtitle">Scan & Auto-Fill Address Forms</p>
+        </header>
+
+        <main class="main-content">
+            <div class="form-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M24 4v24m0 0l-8-8m8 8l8-8" stroke="#004B87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="6" y="32" width="36" height="8" rx="1" stroke="#004B87" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h2>Upload Address Image</h2>
+                    <p>Click to upload or drag & drop</p>
+                    <p class="file-format">PNG, JPG up to 10MB</p>
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                </div>
+
+                <div class="button-group" style="text-align: center; margin: 20px 0;">
+                    <button class="btn btn-primary" id="uploadBtn">Choose Image</button>
+                    <button class="btn btn-secondary" id="cameraBtn">Use Camera</button>
+                </div>
+
+                <div id="loadingSpinner" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Processing image...</p>
+                </div>
+            </div>
+
+            <form id="addressForm" class="address-form" style="display: none;">
+                <fieldset>
+                    <legend>Address Details</legend>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="addressLine1">Address Line 1 *</label>
+                            <input type="text" id="addressLine1" name="addressLine1" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="addressLine2">Address Line 2</label>
+                            <input type="text" id="addressLine2" name="addressLine2">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City/Town *</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State *</label>
+                            <input type="text" id="state" name="state" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pincode">PIN Code *</label>
+                            <input type="text" id="pincode" name="pincode" placeholder="XXXXXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <input type="text" id="country" name="country" value="India">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" placeholder="10 digit mobile">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="detectedLanguage">Detected Language</label>
+                            <input type="text" id="detectedLanguage" readonly style="background: #f0f0f0;">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="editBtn">Edit Image</button>
+                        <button type="submit" class="btn btn-primary">Confirm & Submit</button>
+                    </div>
+                </fieldset>
+            </form>
+
+            <div id="successMessage" class="success-message" style="display: none;">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="22" stroke="#4CAF50" stroke-width="2"/>
+                    <path d="M14 24l6 6 14-14" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h3>Address Submitted Successfully!</h3>
+                <p>Your address has been processed and submitted.</p>
+                <button class="btn btn-primary" id="newScanBtn">Scan Another</button>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 India Post OCR Scanner. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v5.0.5/dist/tesseract.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
