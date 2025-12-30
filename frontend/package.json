@@ -1,0 +1,28 @@
+{
+  "name": "post-office-ocr-scanner-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Post Office OCR Address Scanner",
+  "main": "index.html",
+  "scripts": {
+    "start": "echo \"Starting local server... Open index.html in your browser\" && echo \"Frontend is a static site - no build required!",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ocr",
+    "address",
+    "scanner",
+    "tesseract",
+    "frontend",
+    "html",
+    "javascript",
+    "css"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}
